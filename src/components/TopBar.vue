@@ -5,8 +5,8 @@
       mode="horizontal"
       @select="handleSelect"
   >
-    <el-menu-item index="1">Bảng tin</el-menu-item>
-    <el-menu-item index="2">Chỗ nghỉ</el-menu-item>
+    <el-menu-item index="1" @click="showStats">Bảng tin</el-menu-item>
+    <el-menu-item index="2" @click="showPlaces">Chỗ nghỉ</el-menu-item>
     <el-menu-item index="3" disabled>Khách đến</el-menu-item>
     <el-menu-item index="4" disabled>Khách đi</el-menu-item>
     <el-menu-item index="5" disabled>Khách lưu trú</el-menu-item>
@@ -27,5 +27,13 @@ export default defineComponent({
       handleSelect,
     }
   },
+  methods: {
+    showStats() {
+      this.$router.push('/')
+    },
+    showPlaces() {
+      this.$router.push('/place')
+    },
+  }
 })
 </script>

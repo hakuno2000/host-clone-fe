@@ -1,11 +1,18 @@
 import { createRouter, createWebHistory } from "vue-router";
 import BasicForm from "@/components/BasicForm";
-import PlaceForm from "@/components/PlaceForm";
+import LocationForm from "@/components/LocationForm";
 import RoomForm from "@/components/RoomForm";
 import UtilityForm from "@/components/UtilityForm";
 import RuleForm from "@/components/RuleForm";
+import InformationForm from "@/components/InformationForm";
+import PlaceList from "@/components/PlaceList";
 
 const routes = [
+    {
+        path: "/place",
+        name: "PlaceList",
+        component: PlaceList,
+    },
     {
         path: "/form/1",
         name: "BasicForm",
@@ -13,8 +20,8 @@ const routes = [
     },
     {
         path: "/form/2",
-        name: "PlaceForm",
-        component: PlaceForm,
+        name: "LocationForm",
+        component: LocationForm,
     },
     {
         path: "/form/3",
@@ -30,6 +37,11 @@ const routes = [
         path: "/form/5",
         name: "RuleForm",
         component: RuleForm,
+    },
+    {
+        path: "/form/6",
+        name: "InformationForm",
+        component: InformationForm,
     },
 ]
 

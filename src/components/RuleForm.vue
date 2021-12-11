@@ -5,6 +5,9 @@
     </el-card>
     <el-card class="box-card" align="left">
       <el-row>
+        <p style="text-align:left; font-weight: bold">Hút thuốc</p>
+      </el-row>
+      <el-row>
         <el-col :span="12">
           <el-checkbox v-model="checked1" label="Cho phép"></el-checkbox>
         </el-col>
@@ -12,7 +15,39 @@
           <el-checkbox v-model="checked2" label="Không cho phép"></el-checkbox>
         </el-col>
       </el-row>
-
+      <el-row>
+        <p style="text-align:left; font-weight: bold">Nuôi động vật</p>
+      </el-row>
+      <el-row>
+        <el-col :span="12">
+          <el-checkbox v-model="checked3" label="Cho phép"></el-checkbox>
+        </el-col>
+        <el-col :span="12">
+          <el-checkbox v-model="checked4" label="Không cho phép"></el-checkbox>
+        </el-col>
+      </el-row>
+      <el-row>
+        <p style="text-align:left; font-weight: bold">Tổ chức tiệc</p>
+      </el-row>
+      <el-row>
+        <el-col :span="12">
+          <el-checkbox v-model="checked5" label="Cho phép"></el-checkbox>
+        </el-col>
+        <el-col :span="12">
+          <el-checkbox v-model="checked6" label="Không cho phép"></el-checkbox>
+        </el-col>
+      </el-row>
+      <el-row>
+        <p style="text-align:left; font-weight: bold">Nấu ăn</p>
+      </el-row>
+      <el-row>
+        <el-col :span="12">
+          <el-checkbox v-model="checked7" label="Cho phép"></el-checkbox>
+        </el-col>
+        <el-col :span="12">
+          <el-checkbox v-model="checked8" label="Không cho phép"></el-checkbox>
+        </el-col>
+      </el-row>
       <el-divider></el-divider>
       <div align="center">
         <el-button>Quay lại</el-button>
