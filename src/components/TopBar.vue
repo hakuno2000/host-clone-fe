@@ -1,39 +1,26 @@
 <template>
   <el-menu
-      :default-active="activeIndex"
+      :default-active="$route.path"
       class="el-menu-demo"
       mode="horizontal"
-      @select="handleSelect"
+      @select="onClickTopBarItem"
   >
-    <el-menu-item index="1" @click="showStats">Bảng tin</el-menu-item>
-    <el-menu-item index="2" @click="showPlaces">Chỗ nghỉ</el-menu-item>
-    <el-menu-item index="3" disabled>Khách đến</el-menu-item>
-    <el-menu-item index="4" disabled>Khách đi</el-menu-item>
-    <el-menu-item index="5" disabled>Khách lưu trú</el-menu-item>
+    <el-menu-item index="/">Bảng tin</el-menu-item>
+    <el-menu-item index="/place">Chỗ nghỉ</el-menu-item>
+    <el-menu-item index="" disabled>Khách đến</el-menu-item>
+    <el-menu-item index="" disabled>Khách đi</el-menu-item>
+    <el-menu-item index="" disabled>Khách lưu trú</el-menu-item>
+    <el-menu-item index="/form/1" style="position:absolute;right:0px">Tạo chỗ nghỉ mới</el-menu-item>
   </el-menu>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
 
-export default defineComponent({
-  setup() {
-    const activeIndex = ref('1')
-    const handleSelect = (key, keyPath) => {
-      console.log(key, keyPath)
-    }
-    return {
-      activeIndex,
-      handleSelect,
-    }
-  },
+export default {
   methods: {
-    showStats() {
-      this.$router.push('/')
-    },
-    showPlaces() {
-      this.$router.push('/place')
+    onClickTopBarItem(key) {
+      this.$router.push(key)
     },
   }
-})
+}
 </script>

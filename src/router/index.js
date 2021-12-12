@@ -6,8 +6,14 @@ import UtilityForm from "@/components/UtilityForm";
 import RuleForm from "@/components/RuleForm";
 import InformationForm from "@/components/InformationForm";
 import PlaceList from "@/components/PlaceList";
+import BookingList from "@/components/BookingList";
 
 const routes = [
+    {
+        path: "/",
+        name: "BookingList",
+        component: BookingList,
+    },
     {
         path: "/place",
         name: "PlaceList",
