@@ -7,9 +7,11 @@ import RuleForm from "@/components/RuleForm";
 import InformationForm from "@/components/InformationForm";
 import PlaceList from "@/components/PlaceList";
 import BookingList from "@/components/BookingList";
+import PlacePicture from "@/components/PlacePicture";
+import PlacePrice from "@/components/PlacePrice";
 
 const routes = [
-    {
+        {
         path: "/",
         name: "BookingList",
         component: BookingList,
@@ -48,6 +50,16 @@ const routes = [
         path: "/form/6",
         name: "InformationForm",
         component: InformationForm,
+    },
+    {
+        path: "/price",
+        name: "PlacePrice",
+        component: PlacePrice,
+    },
+    {
+        path: "/pic",
+        name: "PlacePicture",
+        component: PlacePicture,
     },
 ]
 

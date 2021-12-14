@@ -1,80 +1,82 @@
 <template>
-  <el-col :span="12">
-    <el-card class="box-card">
+  <el-col style="width: 50%">
+    <div>
+      <el-steps :active="0" finish-status="success" align-center>
+        <el-step title="Thông tin chỗ nghỉ"></el-step>
+        <el-step title="Hình ảnh chỗ nghỉ"></el-step>
+        <el-step title="Giá và quy định nhận chỗ"></el-step>
+      </el-steps>
+    </div>
+    <br>
+    <el-card class="box-card" shadow="hover" align="left">
       <p style="text-align:left; font-size: larger; font-weight: bold">Tiện nghi</p>
       <p style="text-align:left">Rất nhiều khách hàng đã tìm kiếm chỗ nghỉ dựa trên các tiêu chí về tiện nghi.</p>
-    </el-card>
-    <el-card class="box-card" align="left">
+      <el-divider></el-divider>
       <el-row>
         <el-col :span="12">
-          <el-checkbox v-model="checked1" label="Wifi"></el-checkbox>
+          <el-checkbox v-model="form.utilities[1]" label="Wifi"></el-checkbox>
         </el-col>
         <el-col :span="12">
-          <el-checkbox v-model="checked2" label="Lò vi sóng"></el-checkbox>
+          <el-checkbox v-model="form.utilities[5]" label="Lò vi sóng"></el-checkbox>
         </el-col>
       </el-row>
       <el-row>
         <el-col :span="12">
-          <el-checkbox v-model="checked3" label="TV"></el-checkbox>
+          <el-checkbox v-model="form.utilities[2]" label="TV"></el-checkbox>
         </el-col>
         <el-col :span="12">
-          <el-checkbox v-model="checked4" label="Tủ lạnh"></el-checkbox>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="12">
-          <el-checkbox v-model="checked5" label="Điều hoà"></el-checkbox>
-        </el-col>
-        <el-col :span="12">
-          <el-checkbox v-model="checked6" label="Ban công"></el-checkbox>
+          <el-checkbox v-model="form.utilities[6]" label="Tủ lạnh"></el-checkbox>
         </el-col>
       </el-row>
       <el-row>
         <el-col :span="12">
-          <el-checkbox v-model="checked7" label="Máy giặt"></el-checkbox>
+          <el-checkbox v-model="form.utilities[3]" label="Điều hoà"></el-checkbox>
         </el-col>
         <el-col :span="12">
-          <el-checkbox v-model="checked8" label="Ghế sofa"></el-checkbox>
+          <el-checkbox v-model="form.utilities[7]" label="Ban công"></el-checkbox>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="12">
+          <el-checkbox v-model="form.utilities[4]" label="Máy giặt"></el-checkbox>
+        </el-col>
+        <el-col :span="12">
+          <el-checkbox v-model="form.utilities[8]" label="Ghế sofa"></el-checkbox>
         </el-col>
       </el-row>
       <el-divider></el-divider>
       <div align="center">
-        <el-button>Quay lại</el-button>
-        <el-button type="primary" @click="onSubmit">Tiếp</el-button>
+        <el-button @click="onBack">Quay lại</el-button>
+        <el-button type="primary" @click="onSubmit(form)">Tiếp</el-button>
       </div>
     </el-card>
   </el-col>
 </template>
 
 <script>
-import {defineComponent, ref} from 'vue'
-
-export default defineComponent({
-  setup() {
-    const checked1 = ref(false)
-    const checked2 = ref(false)
-    const checked3 = ref(false)
-    const checked4 = ref(false)
-    const checked5 = ref(false)
-    const checked6 = ref(false)
-    const checked7 = ref(false)
-    const checked8 = ref(false)
+export default {
+  data() {
     return {
-      checked1,
-      checked2,
-      checked3,
-      checked4,
-      checked5,
-      checked6,
-      checked7,
-      checked8,
+      form: {
+        utilities: Array(9).fill(false),
+        place_facilities_attributes: [],
+      }
     }
   },
 
   methods: {
-    onSubmit() {
+    onSubmit(form) {
+      this.form.utilities.forEach((element, index) => {
+        if (element === true) this.form.place_facilities_attributes.push({
+          facility_id: index
+        })
+      })
+      this.$emit('updateUtility', form)
       this.$router.push('/form/5')
     },
+    onBack() {
+      this.$router.back()
+    }
   }
-})
+}
 </script>

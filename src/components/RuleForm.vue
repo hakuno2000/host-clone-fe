@@ -1,18 +1,25 @@
 <template>
-  <el-col :span="12">
-    <el-card class="box-card">
+  <el-col style="width: 50%">
+    <div>
+      <el-steps :active="0" finish-status="success" align-center>
+        <el-step title="Thông tin chỗ nghỉ"></el-step>
+        <el-step title="Hình ảnh chỗ nghỉ"></el-step>
+        <el-step title="Giá và quy định nhận chỗ"></el-step>
+      </el-steps>
+    </div>
+    <br>
+    <el-card class="box-card" shadow="hover" align="left">
       <p style="text-align:left; font-size: larger; font-weight: bold">Thiết lập nội quy chỗ nghỉ</p>
-    </el-card>
-    <el-card class="box-card" align="left">
+      <el-divider></el-divider>
       <el-row>
         <p style="text-align:left; font-weight: bold">Hút thuốc</p>
       </el-row>
       <el-row>
         <el-col :span="12">
-          <el-checkbox v-model="checked1" label="Cho phép"></el-checkbox>
+          <el-radio v-model="form.rules[0]" label="allowed">Cho phép</el-radio>
         </el-col>
         <el-col :span="12">
-          <el-checkbox v-model="checked2" label="Không cho phép"></el-checkbox>
+          <el-radio v-model="form.rules[0]" label="unallowed">Không cho phép</el-radio>
         </el-col>
       </el-row>
       <el-row>
@@ -20,10 +27,10 @@
       </el-row>
       <el-row>
         <el-col :span="12">
-          <el-checkbox v-model="checked3" label="Cho phép"></el-checkbox>
+          <el-radio v-model="form.rules[1]" label="allowed">Cho phép</el-radio>
         </el-col>
         <el-col :span="12">
-          <el-checkbox v-model="checked4" label="Không cho phép"></el-checkbox>
+          <el-radio v-model="form.rules[1]" label="unallowed">Không cho phép</el-radio>
         </el-col>
       </el-row>
       <el-row>
@@ -31,10 +38,10 @@
       </el-row>
       <el-row>
         <el-col :span="12">
-          <el-checkbox v-model="checked5" label="Cho phép"></el-checkbox>
+          <el-radio v-model="form.rules[2]" label="allowed">Cho phép</el-radio>
         </el-col>
         <el-col :span="12">
-          <el-checkbox v-model="checked6" label="Không cho phép"></el-checkbox>
+          <el-radio v-model="form.rules[2]" label="unallowed">Không cho phép</el-radio>
         </el-col>
       </el-row>
       <el-row>
@@ -42,50 +49,48 @@
       </el-row>
       <el-row>
         <el-col :span="12">
-          <el-checkbox v-model="checked7" label="Cho phép"></el-checkbox>
+          <el-radio v-model="form.rules[3]" label="allowed">Cho phép</el-radio>
         </el-col>
         <el-col :span="12">
-          <el-checkbox v-model="checked8" label="Không cho phép"></el-checkbox>
+          <el-radio v-model="form.rules[3]" label="unallowed">Không cho phép</el-radio>
         </el-col>
       </el-row>
       <el-divider></el-divider>
       <div align="center">
-        <el-button>Quay lại</el-button>
-        <el-button type="primary" @click="onSubmit">Tiếp</el-button>
+        <el-button @click="onBack">Quay lại</el-button>
+        <el-button type="primary" @click="onSubmit(form)">Tiếp</el-button>
       </div>
     </el-card>
   </el-col>
 </template>
 
 <script>
-import {defineComponent, ref} from 'vue'
-
-export default defineComponent({
-  setup() {
-    const checked1 = ref(false)
-    const checked2 = ref(false)
-    const checked3 = ref(false)
-    const checked4 = ref(false)
-    const checked5 = ref(false)
-    const checked6 = ref(false)
-    const checked7 = ref(false)
-    const checked8 = ref(false)
+export default {
+  data() {
     return {
-      checked1,
-      checked2,
-      checked3,
-      checked4,
-      checked5,
-      checked6,
-      checked7,
-      checked8,
+      form: {
+        rules: Array(4).fill("allowed"),
+        rule_names: ["smoking", "pet", "party", "cooking"],
+        rule_attributes: {},
+      }
     }
   },
 
   methods: {
-    onSubmit() {
+    onSubmit(form) {
+      this.form.rule_attributes = {
+        "special_rules": "no special rules",
+        "smoking": this.form.rules[0],
+        "pet": this.form.rules[1],
+        "party": this.form.rules[2],
+        "cooking": this.form.rules[3]
+      }
+      this.$emit('updateRule', form)
       this.$router.push('/form/6')
     },
+    onBack() {
+      this.$router.back()
+    }
   }
-})
+}
 </script>
